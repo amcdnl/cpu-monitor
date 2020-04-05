@@ -7002,6 +7002,13 @@ load-json-file@^4.0.0:
     pify "^3.0.0"
     strip-bom "^3.0.0"
 
+loadavg-windows@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/loadavg-windows/-/loadavg-windows-1.1.1.tgz#e384aa8107b4ebf851bec267dd4a0789c4c54bc4"
+  integrity sha512-ncSyH121LuN6OENPSohTAS2W85J3NYVIfjsVcK4spViQbHlQUXhGKd8VYhrqWyjtwwSTw4g3rrDraNoSJWRLgw==
+  dependencies:
+    weak-daemon "1.0.3"
+
 loader-fs-cache@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/loader-fs-cache/-/loader-fs-cache-1.0.2.tgz#54cedf6b727e1779fd8f01205f05f6e88706f086"
@@ -11437,6 +11444,11 @@ wbuf@^1.1.0, wbuf@^1.7.3:
   integrity sha512-O84QOnr0icsbFGLS0O3bI5FswxzRr8/gHwWkDlQFskhSPryQXvrTMxjxGP4+iWYoauLoBvfDpkrOauZ+0iZpDA==
   dependencies:
     minimalistic-assert "^1.0.0"
+
+weak-daemon@1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/weak-daemon/-/weak-daemon-1.0.3.tgz#d922b7c0dfb8f6bf027c463ea875584d2b085f19"
+  integrity sha512-9OLYp5qQSxpnTIyuA1zJ7at3DV2DSBcbdXduC/3QFPeYjF30Lh1nfBrG+VLf4QUvZPz2lXFPu08oIRzWQfucVQ==
 
 webidl-conversions@^4.0.2:
   version "4.0.2"

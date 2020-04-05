@@ -28,6 +28,7 @@
   "dependencies": {
     "classnames": "^2.2.6",
     "d3-array": "^2.4.0",
+    "human-format": "^0.10.1",
     "d3-scale": "^3.2.1",
     "framer-motion": "1.10.3",
     "lodash-es": "^4.17.15",

@@ -3,6 +3,10 @@ const http = require('http');
 const socketIo = require('socket.io');
 const os = require('os');
 
+// Bootstrap the os load to handle windows
+// https://www.npmjs.com/package/loadavg-windows
+require('loadavg-windows');
+
 const port = process.env.PORT || 4001;
 
 const app = express();
@@ -15,6 +19,9 @@ const totalMemory = os.totalmem();
 
 const sockets = [];
 
+// Lets make a singleton that will
+// always emit the event despite the
+// number of clients that are ever created
 setInterval(() => {
   const cpuData = {
     hostname,
@@ -37,6 +44,7 @@ io.on('connection', socket => {
   socket.on('disconnect', () => {
     const idx = sockets.findIndex(s => s === socket);
     if (idx > -1) {
+      // TODO: Figure out why this is race casing
       // sockets.splice(idx);
       console.info('Socket removed');
     }
