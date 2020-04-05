@@ -50,6 +50,7 @@ export const App: FC = () => {
   const [totalMemory, setTotalMemory] = useState<number>(0);
   const [hostname, setHostname] = useState<string>('');
   const [memoryData, setMemoryData] = useState<any[]>([]);
+  const [cpuData, setCpuData] = useState<any[]>([]);
 
   // Listen for all our updates and update the sate
   useSocket('updates', (data: CPUData) => {
@@ -58,6 +59,17 @@ export const App: FC = () => {
     setCpus(data.cpus);
     setHostname(data.hostname);
     setTotalMemory(data.totalMemory);
+
+    setCpuData([
+      // Filter out events that are less than 10 minutes
+      ...cpuData.filter(m =>
+        moment(m.time).isSameOrAfter(moment(new Date()).subtract(10, 'm'))
+      ),
+      {
+        key: new Date(data.time),
+        data: data.loadAverage[0] / data.cpus
+      }
+    ]);
 
     setMemoryData([
       // Filter out events that are less than 10 minutes

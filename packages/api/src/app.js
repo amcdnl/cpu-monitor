@@ -38,7 +38,7 @@ setInterval(() => {
 }, 10000);
 
 io.on('connection', socket => {
-  console.info('New client connected');
+  console.info('New client connected', socket);
   sockets.push(socket);
 
   socket.on('disconnect', () => {
