@@ -1,0 +1,12 @@
+# https://github.com/prettier/prettier#configuration-file
+semi: true
+singleQuote: true
+trailingComma: none
+arrowParens: avoid
+bracketSpacing: true
+jsxBracketSameLine: false
+
+overrides:
+- files: ".prettierrc"
+  options:
+    parser: json

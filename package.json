@@ -1,0 +1,29 @@
+{
+  "version": "0.0.0",
+  "private": true,
+  "dependencies": {
+    "husky": "^4.2.3",
+    "lint-staged": "^10.0.7",
+    "prettier": "^2.0.2",
+    "typescript": "~3.7.2"
+  },
+  "scripts": {
+    "start:web": "yarn workspace @cpu-monitor/web start",
+    "start:api": "yarn workspace @cpu-monitor/api start",
+    "build": "yarn workspace @cpu-monitor/web build"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "packages/*/src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "workspaces": [
+    "packages/*"
+  ]
+}

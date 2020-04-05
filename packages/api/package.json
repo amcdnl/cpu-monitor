@@ -1,0 +1,13 @@
+{
+  "name": "@cpu-monitor/api",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node src/app.js"
+  },
+  "devDependencies": {},
+  "dependencies": {
+    "express": "^4.17.1",
+    "socket.io": "^2.3.0"
+  }
+}
