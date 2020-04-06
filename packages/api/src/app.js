@@ -38,13 +38,12 @@ setInterval(() => {
 }, 10000);
 
 io.on('connection', socket => {
-  console.info('New client connected', socket);
+  console.info('New client connected');
   sockets.push(socket);
 
   socket.on('disconnect', () => {
     const idx = sockets.findIndex(s => s === socket);
     if (idx > -1) {
-      // TODO: Figure out why this is race casing
       // sockets.splice(idx);
       console.info('Socket removed');
     }

@@ -10,6 +10,7 @@
   "scripts": {
     "start:web": "yarn workspace @cpu-monitor/web start",
     "start:api": "yarn workspace @cpu-monitor/api start",
+    "test:web": "yarn workspace @cpu-monitor/web test",
     "build": "yarn workspace @cpu-monitor/web build"
   },
   "husky": {

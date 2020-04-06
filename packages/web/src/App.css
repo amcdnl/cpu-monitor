@@ -16,6 +16,7 @@ h1 {
   background: var(--color-surface);
   padding: 20px;
   flex: 1;
+  height: 300px;
 }
 
 .main section:first-child {
