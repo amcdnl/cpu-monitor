@@ -20,5 +20,6 @@ Browser-based CPU load monitoring application
 - API: Express / Socket.io Server
 
 ## TODO Improvements
+- Improve UI style - Make it prettier lol
 - Improve UI start time - currently has to wait for next 10s interval
 - Improve charts - Add some ability to set markers when a threshold exceeded
