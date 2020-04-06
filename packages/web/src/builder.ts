@@ -16,15 +16,37 @@ export const calculateThreshold = (
   threshold = 1
 ) => {
   // Detect if our load avg is greater than the threshold
-  const thresholdExceeded = loadAverage >= threshold;
+  const curThresholdExceeded = loadAverage >= threshold;
 
   // If our threshold is not exceeded, check if our previous tick had
   // and return the result if so
-  let thresholdRecovered;
-  if (!thresholdExceeded && cpuData.length) {
-    const lastTick = cpuData[cpuData.length - 1];
-    if (lastTick.data >= threshold) {
-      thresholdRecovered = true;
+  let thresholdRecovered = false;
+  let thresholdExceeded = false;
+
+  if (cpuData.length) {
+    // Find the last one that was not exceeded
+    const lastSuccess = cpuData
+      .reverse()
+      .find(c => !c.metadata?.thresholdExceeded);
+
+    // Calculate a date that was one minute ago
+    const dateAgo = moment(new Date()).subtract(1, 'm');
+
+    // If we found the last successful one, lets check when its date was
+    if (lastSuccess) {
+      // Deteremine if the found one is greater than 1 minute ago
+      if (moment(lastSuccess.key as Date).isSameOrBefore(dateAgo)) {
+        if (curThresholdExceeded) {
+          thresholdExceeded = true;
+        } else {
+          thresholdRecovered = true;
+        }
+      }
+    } else {
+      // If there was never a successful one and the first one was 1 minute ago,
+      if (moment(cpuData[0].key as Date).isSameOrBefore(dateAgo)) {
+        thresholdExceeded = true;
+      }
     }
   }
 
@@ -48,14 +70,19 @@ export const buildData = (
     moment(m.key as Date).isSameOrAfter(moment(new Date()).subtract(10, 'm'))
   );
 
+  const results = calculateThreshold(loadAverage, nextCpuData, threshold);
+
   return {
     loadAverage,
-    ...calculateThreshold(loadAverage, nextCpuData, threshold),
+    ...results,
     cpuData: [
       ...nextCpuData,
       {
         key: new Date(data.time),
-        data: loadAverage
+        data: loadAverage,
+        metadata: {
+          thresholdExceeded: results.thresholdExceeded
+        }
       }
     ],
     memoryData: [
